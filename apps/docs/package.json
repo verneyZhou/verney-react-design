@@ -1,0 +1,43 @@
+{
+  "name": "@verney/docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx --fix",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
+  },
+  "dependencies": {
+    "@mapbox/rehype-prism": "^0.9.0",
+    "@mdx-js/react": "^3.1.0",
+    "@verney/ui": "workspace:*",
+    "classnames": "^2.3.2",
+    "next": "^14.0.3",
+    "nextra": "^2.13.2",
+    "nextra-theme-docs": "^2.13.2",
+    "prism-react-renderer": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remark-gfm": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.3.1",
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@verney/eslint-config": "workspace:*",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.40.0",
+    "eslint-config-next": "^14.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-mdx": "^3.1.5",
+    "eslint-plugin-prettier": "^5.0.0",
+    "install": "^0.13.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.0.0"
+  }
+}

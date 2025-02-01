@@ -1,0 +1,266 @@
+---
+title: Waterfall 瀑布流
+---
+
+import { Waterfall } from "@verney/ui";
+
+import LoadMoreExample from "@/components/demo/LoadMoreExample";
+
+# Waterfall 瀑布流
+
+瀑布流布局组件，用于展示不规则高度的内容，支持无限滚动加载和动画效果。
+
+## 何时使用
+
+- 展示大量图片或卡片时，需要按照一定规律排列。
+- 需要无限滚动加载更多内容时。
+- 内容高度不一致，需要紧凑布局时。
+
+## 代码演示
+
+### 基本使用
+
+<CodeBlock
+  language="tsx"
+  code={`import { Waterfall } from '@verney/ui';
+
+const data = [
+{ id: 1, title: '标题1', image: 'https://picsum.photos/300/400' },
+{ id: 2, title: '标题2', image: 'https://picsum.photos/300/300' },
+{ id: 3, title: '标题3', image: 'https://picsum.photos/300/500' },
+{ id: 4, title: '标题4', image: 'https://picsum.photos/300/350' },
+];
+
+<Waterfall
+  dataSource={data}
+  columns={2}
+  gutter={16}
+  renderItem={(item) => (
+    <div className="card">
+      <img src={item.image} alt={item.title} />
+      <h3>{item.title}</h3>
+    </div>
+  )}
+/>
+`}>
+  <div className="demo-waterfall">
+    <Waterfall
+      dataSource={[
+        { id: 1, title: '标题1', image: 'https://picsum.photos/300/400' },
+        { id: 2, title: '标题2', image: 'https://picsum.photos/300/300' },
+        { id: 3, title: '标题3', image: 'https://picsum.photos/300/500' },
+        { id: 4, title: '标题4', image: 'https://picsum.photos/300/350' },
+      ]}
+      columns={2}
+      gutter={16}
+      renderItem={(item) => (
+        <div className="card">
+          <img src={item.image} alt={item.title} />
+          <h3>{item.title}</h3>
+        </div>
+      )}
+    />
+  </div>
+</CodeBlock>
+
+### 自定义多列
+
+<CodeBlock
+  language="tsx"
+  code={`import { Waterfall } from '@verney/ui';
+
+<Waterfall
+  dataSource={data}
+  enableAnimation={true}
+  animationDuration={500}
+  animationEasing="cubic-bezier(0.4, 0, 0.2, 1)"
+  renderItem={(item) => (
+    <div className="card">
+      <img src={item.image} alt={item.title} />
+      <h3>{item.title}</h3>
+    </div>
+  )}
+/>
+`}>
+  <div className="demo-waterfall">
+    <Waterfall
+      dataSource={[
+        { id: 1, title: '标题1', image: 'https://picsum.photos/300/400' },
+        { id: 2, title: '标题2', image: 'https://picsum.photos/300/300' },
+        { id: 3, title: '标题3', image: 'https://picsum.photos/300/500' },
+        { id: 4, title: '标题4', image: 'https://picsum.photos/300/350' },
+        { id: 5, title: '标题5', image: 'https://picsum.photos/300/450' },
+        { id: 6, title: '标题6', image: 'https://picsum.photos/300/400' },
+        { id: 7, title: '标题7', image: 'https://picsum.photos/300/300' },
+        { id: 8, title: '标题8', image: 'https://picsum.photos/300/500' },
+        { id: 9, title: '标题9', image: 'https://picsum.photos/300/350' },
+        { id: 10, title: '标题10', image: 'https://picsum.photos/300/450' },
+      ]}
+      enableAnimation={true}
+      animationDuration={500}
+      columns={3}
+      animationEasing="cubic-bezier(0.4, 0, 0.2, 1)"
+      renderItem={(item) => (
+        <div className="card">
+          <img src={item.image} alt={item.title} />
+          <h3>{item.title}</h3>
+        </div>
+      )}
+    />
+  </div>
+</CodeBlock>
+
+### 滚动加载更多
+
+<CodeBlock
+  language="tsx"
+  code={`import React, { useState, useCallback } from 'react';
+import { Waterfall } from '@verney/ui';
+
+const mockData = (page: number) => {
+return Array.from({ length: 10 }, (\_, i) => ({
+id: page _ 10 + i,
+title: \`标题\${page _ 10 + i + 1}\`,
+image: \`https://picsum.photos/300/\${Math.floor(Math.random() _ 200 + 300)}?random=\${page _ 10 + i}\`,
+desc: '这是一段示例描述文本，用于演示瀑布流布局的效果。'
+}));
+};
+
+const App = () => {
+const [data, setData] = useState(() => mockData(0));
+const [loading, setLoading] = useState(false);
+const [hasMore, setHasMore] = useState(true);
+const [page, setPage] = useState(1);
+
+const loadMore = useCallback(async () => {
+if (loading) return;
+setLoading(true);
+
+    // 模拟异步加载
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    const newData = mockData(page);
+    setData(prev => [...prev, ...newData]);
+    setPage(prev => prev + 1);
+    setHasMore(page < 5); // 最多加载5页
+    setLoading(false);
+
+}, [page, loading]);
+
+return (
+
+<div
+  style={{
+    height: "600px",
+    overflow: "auto",
+    padding: "16px",
+    background: "#f5f5f5",
+  }}
+>
+  <Waterfall
+    dataSource={data}
+    columns={2}
+    gutter={16}
+    loading={loading}
+    hasMore={hasMore}
+    onLoadMore={loadMore}
+    loadingComponent={
+      <div style={{ textAlign: "center", padding: "16px 0" }}>加载中...</div>
+    }
+    noMoreComponent={
+      <div
+        style={{
+          textAlign: "center",
+          padding: "16px 0",
+          color: "#999",
+        }}
+      >
+        没有更多数据了
+      </div>
+    }
+    renderItem={(item) => (
+      <div
+        style={{
+          background: "#fff",
+          borderRadius: "8px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+          }}
+        />
+        <div style={{ padding: "12px" }}>
+          <h3 style={{ margin: "0 0 8px" }}>{item.title}</h3>
+          <p
+            style={{
+              margin: 0,
+              fontSize: "14px",
+              color: "#666",
+              lineHeight: 1.5,
+            }}
+          >
+            {item.desc}
+          </p>
+        </div>
+      </div>
+    )}
+  />
+</div>
+); };`}>
+
+  <LoadMoreExample />
+</CodeBlock>
+
+## API
+
+### Waterfall
+
+| 参数              | 说明                       | 类型                                            | 默认值         |
+| ----------------- | -------------------------- | ----------------------------------------------- | -------------- |
+| dataSource        | 数据源                     | `any[]`                                         | `[]`           |
+| columns           | 列数                       | `number`                                        | `2`            |
+| gutter            | 列间距（单位：px）         | `number`                                        | `16`           |
+| defaultItemHeight | 默认项目高度（单位：px）   | `number`                                        | `200`          |
+| enableAnimation   | 是否启用动画               | `boolean`                                       | `true`         |
+| animationDuration | 动画持续时间（单位：ms）   | `number`                                        | `300`          |
+| animationEasing   | 动画缓动函数               | `string`                                        | `'ease-out'`   |
+| renderItem        | 自定义渲染项               | `(item: any, index: number) => React.ReactNode` | -              |
+| className         | 容器类名                   | `string`                                        | -              |
+| style             | 容器样式                   | `React.CSSProperties`                           | -              |
+| loading           | 是否正在加载更多           | `boolean`                                       | `false`        |
+| hasMore           | 是否还有更多数据           | `boolean`                                       | `true`         |
+| onLoadMore        | 加载更多的回调函数         | `() => void`                                    | -              |
+| loadingComponent  | 自定义加载中显示内容       | `React.ReactNode`                               | `'加载中...'`  |
+| noMoreComponent   | 自定义没有更多数据显示内容 | `React.ReactNode`                               | `'没有更多了'` |
+
+## 注意事项
+
+1. **图片加载处理**
+
+   - 组件会自动等待图片加载完成后再计算高度
+   - 如果图片加载时间超过 200ms，会先使用默认高度进行布局
+   - 图片加载完成后会自动更新布局
+
+2. **性能优化**
+
+   - 建议给 `dataSource` 中的每个项目添加唯一的 `key`
+   - 大量数据时建议使用虚拟滚动优化
+   - 图片建议使用 CDN 并进行适当压缩
+
+3. **动画效果**
+
+   - 动画仅在项目首次渲染和布局更新时触发
+   - 可以通过 `enableAnimation` 属性关闭动画
+   - `animationEasing` 支持所有 CSS transition-timing-function 的值
+
+4. **响应式布局**
+   - 可以通过监听窗口大小变化动态调整 `columns` 属性
+   - 建议配合 CSS 媒体查询使用
+   - 列数改变时会自动重新计算布局

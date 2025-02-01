@@ -1,0 +1,27 @@
+{
+  "name": "@verney/storybook",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "dependencies": {
+    "@verney/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@verney/eslint-config": "workspace:*",
+    "@storybook/addon-essentials": "^8.5.0",
+    "@storybook/addon-interactions": "^8.5.0",
+    "@storybook/addon-links": "^8.5.0",
+    "@storybook/addon-onboarding": "^8.5.0",
+    "@storybook/addon-a11y": "^8.5.0",
+    "@storybook/blocks": "^8.5.0",
+    "@storybook/react": "^8.5.0",
+    "@storybook/react-vite": "^8.5.0",
+    "@storybook/testing-library": "^0.2.2",
+    "storybook": "^8.5.0"
+  }
+}

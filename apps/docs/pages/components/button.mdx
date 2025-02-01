@@ -1,0 +1,46 @@
+---
+title: Button 按钮
+---
+
+import { Button } from "@verney/ui";
+
+# Button 按钮
+
+按钮用于开始一个即时操作。
+
+## 基础用法
+
+### 按钮类型
+
+<CodeBlock
+  language="tsx"
+  code={`import { Button } from '@verney/ui';
+
+// 基础按钮类型示例
+
+<Button>默认按钮</Button>
+<Button type="primary">主要按钮</Button>
+<Button type="dashed">虚线按钮</Button>
+<Button type="link">链接按钮</Button>
+<Button type="text">文本按钮</Button>
+`}>
+  <div className="flex gap-2 flex-wrap">
+    <Button>默认按钮</Button>
+    <Button type="primary">主要按钮</Button>
+    <Button type="dashed">虚线按钮</Button>
+    <Button type="link">链接按钮</Button>
+    <Button type="text">文本按钮</Button>
+  </div>
+</CodeBlock>
+
+## API
+
+| 属性     | 说明           | 类型                                                     | 默认值      |
+| -------- | -------------- | -------------------------------------------------------- | ----------- |
+| type     | 按钮类型       | `'default' \| 'primary' \| 'dashed' \| 'link' \| 'text'` | `'default'` |
+| size     | 按钮大小       | `'small' \| 'medium' \| 'large'`                         | `'medium'`  |
+| disabled | 是否禁用       | `boolean`                                                | `false`     |
+| loading  | 是否加载中     | `boolean`                                                | `false`     |
+| danger   | 是否为危险按钮 | `boolean`                                                | `false`     |
+| block    | 是否为块级按钮 | `boolean`                                                | `false`     |
+| onClick  | 点击事件       | `(event: React.MouseEvent<HTMLButtonElement>) => void`   | -           |

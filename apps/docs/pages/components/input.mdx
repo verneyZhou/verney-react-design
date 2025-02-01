@@ -1,0 +1,92 @@
+---
+title: Input 输入框
+---
+
+import { Input } from "@verney/ui";
+
+# Input 输入框
+
+通过鼠标或键盘输入内容，是最基础的表单域的包装。
+
+## 何时使用
+
+- 需要用户输入表单域内容时。
+- 提供组合型输入框，带搜索的输入框，还可以进行大小选择。
+
+## 代码演示
+
+### 基本使用
+
+<CodeBlock
+  language="tsx"
+  code={`import { Input } from '@verney/ui';
+
+<Input placeholder="基本使用" />
+`}>
+  <div className="flex flex-col gap-4">
+    <Input placeholder="基本使用" />
+  </div>
+</CodeBlock>
+
+### 三种大小
+
+<CodeBlock
+  language="tsx"
+  code={`import { Input } from '@verney/ui';
+
+<Input size="large" placeholder="大尺寸" />
+<Input placeholder="默认尺寸" />
+<Input size="small" placeholder="小尺寸" />
+`}>
+  <div className="flex flex-col gap-4">
+    <Input size="large" placeholder="大尺寸" />
+    <Input placeholder="默认尺寸" />
+    <Input size="small" placeholder="小尺寸" />
+  </div>
+</CodeBlock>
+
+### 前缀和后缀
+
+<CodeBlock
+  language="tsx"
+  code={`import { Input } from '@verney/ui';
+
+<Input prefix="￥" suffix="RMB" />
+<Input prefix="用户名" allowClear />
+`}>
+  <div className="flex flex-col gap-4">
+    <Input prefix="￥" suffix="RMB" />
+    <Input prefix="用户名" allowClear />
+  </div>
+</CodeBlock>
+
+### 状态
+
+<CodeBlock
+  language="tsx"
+  code={`import { Input } from '@verney/ui';
+
+<Input status="error" placeholder="错误状态" />
+<Input status="warning" placeholder="警告状态" />
+<Input disabled placeholder="禁用状态" />
+`}>
+  <div className="flex flex-col gap-4">
+    <Input status="error" placeholder="错误状态" />
+    <Input status="warning" placeholder="警告状态" />
+    <Input disabled placeholder="禁用状态" />
+  </div>
+</CodeBlock>
+
+## API
+
+| 属性       | 说明                     | 类型                           | 默认值   |
+| ---------- | ------------------------ | ------------------------------ | -------- |
+| allowClear | 可以点击清除图标删除内容 | `boolean`                      | `false`  |
+| bordered   | 是否有边框               | `boolean`                      | `true`   |
+| disabled   | 是否禁用状态             | `boolean`                      | `false`  |
+| prefix     | 带有前缀图标的 input     | `ReactNode`                    | -        |
+| size       | 控件大小                 | `large` \| `middle` \| `small` | `middle` |
+| status     | 设置校验状态             | `error` \| `warning`           | -        |
+| suffix     | 带有后缀图标的 input     | `ReactNode`                    | -        |
+| value      | 输入框内容               | `string`                       | -        |
+| onChange   | 输入框内容变化时的回调   | `function(e)`                  | -        |
