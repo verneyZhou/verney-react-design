@@ -238,9 +238,19 @@ pnpm husky add .husky/pre-commit 'npx lint-staged'
 - 在提交前自动运行 ESLint 和 Prettier
 - 统一团队的代码风格和提交信息格式
 
+## vercel 部署
+
+1. github上添加项目
+2. vercel 中添加项目，关联github项目，分别部署docs、storybook
+
 ## TODO
 
 - docs、storybook 组件库文档 打包自动部署vercel
+
+  - Q1: docs打包时是怎么把UI组件的样式打进去的？在哪里配置的？
+
+  - Q2: storybook打包时是怎么把UI组件的样式打进去的？在哪里配置的？
+
 - 检查AI配置，
 - 梳理monorepo中eslint的校验规则：
   - eslintrc.js跟tsconfig.json的关系

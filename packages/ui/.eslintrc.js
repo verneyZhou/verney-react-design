@@ -7,5 +7,5 @@ module.exports = {
     rules: {
         'import/order': 'off',
     },
-    ignorePatterns: ['.eslintrc.js'],
+    ignorePatterns: ['.eslintrc.js', 'dist'],
 };
