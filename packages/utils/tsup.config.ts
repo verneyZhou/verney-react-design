@@ -1,6 +1,7 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
+    external: ['react'],
     // 入口文件
     entry: ['src/index.ts'],
     // 生成类型文件

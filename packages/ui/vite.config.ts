@@ -7,52 +7,49 @@ import { resolve } from 'path';
 
 export default defineConfig({
     plugins: [
+        // React 插件支持
         react(),
+        // TypeScript 声明文件生成插件
         dts({
             include: ['src'],
             exclude: ['src/**/*.test.tsx', 'src/**/*.stories.tsx'],
             rollupTypes: true,
         }),
     ],
+    // 测试配置
     test: {
-        globals: true,
-        environment: 'jsdom',
-        setupFiles: ['./src/test/setup.ts'],
-        include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+        globals: true, // 启用全局测试
+        environment: 'jsdom', // 使用 jsdom 环境
+        setupFiles: ['./src/test/setup.ts'], // 测试启动文件
+        include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'], // 测试文件匹配模式
         coverage: {
-            reporter: ['text', 'json', 'html'],
-            exclude: ['node_modules/', 'src/test/setup.ts'],
+            reporter: ['text', 'json', 'html'], // 覆盖率报告格式
+            exclude: ['node_modules/', 'src/test/setup.ts'], // 排除的文件
         },
     },
+    // 构建配置
     build: {
-        target: 'modules',
-        //输出文件目录
-        outDir: 'dist',
-        //压缩
-        minify: true,
+        target: 'modules', // 构建目标
+        outDir: 'dist', // 输出目录
+        minify: true, // 启用代码压缩
+        // 库模式配置
         lib: {
-            entry: resolve(__dirname, 'src/index.tsx'),
-            name: 'verneyReactDesign',
-            formats: ['es', 'cjs', 'umd', 'iife'], // 支持umd、cjs、esm三种格式
-            fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
+            entry: resolve(__dirname, 'src/index.tsx'), // 入口文件
+            name: 'verneyReactDesign', // 库名称
+            formats: ['es', 'cjs', 'umd', 'iife'], // 输出格式
+            fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`, // 文件名格式
         },
+        // Rollup 配置项
         rollupOptions: {
-            external: ['react', 'react-dom'],
+            external: ['react', 'react-dom'], // 外部依赖
             output: {
-                // entryFileNames: '[name].js',
-                // chunkFileNames: '[name]-[hash].js',
                 globals: {
                     react: 'React',
                     'react-dom': 'ReactDOM',
                 },
             },
         },
-        sourcemap: true,
-        cssCodeSplit: true,
-        css: {
-            // 确保 CSS 文件被提取到单独的文件中
-            extract: true,
-        },
-        cssCodeSplit: true,
+        sourcemap: true, // 生成 sourcemap
+        cssCodeSplit: true, // 启用 CSS 代码分割
     },
 });
