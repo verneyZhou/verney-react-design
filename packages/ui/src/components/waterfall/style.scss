@@ -1,34 +1,34 @@
 .verney-waterfall {
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
 }
 
 .verney-waterfall-column {
-  width: 100%;
+    width: 100%;
 }
 
 .verney-waterfall-item {
-  width: 100%;
-  break-inside: avoid;
-
-  img {
     width: 100%;
-    height: auto;
-    display: block;
-  }
+    break-inside: avoid;
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 }
 
 .verney-waterfall-loader {
-  grid-column: 1 / -1; // 跨越所有列
-  text-align: center;
-  padding: 20px 0;
-  color: #999;
+    grid-column: 1 / -1; // 跨越所有列
+    text-align: center;
+    padding: 20px 0;
+    color: #999;
 }
 
 // 移动端适配
-@media screen and (max-width: 768px) {
-  .verney-waterfall {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
+@media screen and (width <= 768px) {
+    .verney-waterfall {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
 }

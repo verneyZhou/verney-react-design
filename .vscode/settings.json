@@ -5,6 +5,7 @@
     },
     // 保存时自动格式化代码
     "editor.formatOnSave": true,
+    "stylelint.autoFixOnSave": true, // 保存自动格式化
     // 设置默认格式化工具为 Prettier
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     // ESLint 校验的文件类型

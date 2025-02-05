@@ -26,6 +26,8 @@
         "dev": "vite build --watch",
         "lint": "eslint \"src/**/*.ts*\"",
         "lint:fix": "eslint src --ext .ts,.tsx --fix",
+        "stylelint": "stylelint \"src/**/*.{css,less,scss,sass}\"",
+        "stylelint:fix": "stylelint \"src/**/*.{css,less,scss,sass}\" --fix",
         "test": "vitest",
         "test:coverage": "vitest run --coverage",
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"

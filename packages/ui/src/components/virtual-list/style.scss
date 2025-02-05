@@ -1,41 +1,40 @@
 .verney-virtual-list {
-  width: 100%;
-  position: relative;
+    width: 100%;
+    position: relative;
 }
 
 .verney-virtual-list-container {
-  position: relative;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: 100%;
+    position: relative;
+    overflow: hidden auto;
+    width: 100%;
 }
 
 .verney-virtual-list-content {
-  width: 100%;
-  position: relative;
+    width: 100%;
+    position: relative;
 }
 
 .verney-virtual-list-items {
-  position: relative;
-  width: 100%;
-  will-change: transform;
+    position: relative;
+    width: 100%;
+    will-change: transform;
 
-  .verney-virtual-list-items-waterfall {
-    display: flex;
-    flex-wrap: wrap;
-  }
+    .verney-virtual-list-items-waterfall {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
 .verney-virtual-list-item {
-  width: 100%;
-  box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
 
-  .verney-virtual-list-item-waterfall {
-    display: inline-block;
-  }
+    .verney-virtual-list-item-waterfall {
+        display: inline-block;
+    }
 }
 
 .verney-virtual-list-loading {
-  text-align: center;
-  padding: 10px;
+    text-align: center;
+    padding: 10px;
 }

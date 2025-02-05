@@ -1,5 +1,5 @@
 {
     "extends": "@verney/ts-config/base",
-    "include": ["src", "vite.config.ts", "postcss.config.js"],
+    "include": ["src", "vite.config.ts", "postcss.config.js", "stylelint.config.js"],
     "exclude": ["node_modules", "dist"]
 }
