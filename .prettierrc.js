@@ -1,10 +1,22 @@
 module.exports = {
-    printWidth: 120, //一行的字符数，如果超过会进行换行，默认为80
-    tabWidth: 4, // 一个 tab 代表几个空格数，默认为 2 个
-    useTabs: false, //是否使用 tab 进行缩进，默认为false，表示用空格进行缩减
-    singleQuote: true, // 字符串是否使用单引号，默认为 false，使用双引号
-    semi: true, // 行尾是否使用分号，默认为true
-    trailingComma: 'none', // 是否使用尾逗号
-    bracketSpacing: true, // 对象大括号直接是否有空格，默认为 true，效果：{ a: 1 }
-    jsxBracketSameLine: true // jsx > 是否另起一行
+    printWidth: 100, //一行的字符数，如果超过会进行换行，默认为80
+    tabWidth: 4, //缩进字节数，默认为2
+    useTabs: false, //是否使用tab进行缩进，默认为false
+    semi: true, //句尾是否使用分号，默认为true
+    singleQuote: true, //是否使用单引号代替双引号，默认为false
+    quoteProps: 'as-needed', //对象的key是否使用引号，可选值"as-needed"｜"consistent"｜"preserve"
+    jsxSingleQuote: false, //在jsx中是否使用单引号代替双引号，默认为false
+    trailingComma: 'all', //是否使用尾逗号，可选值"<none|es5|all>"
+    bracketSpacing: true, //对象大括号直接是否有空格，默认为true
+    bracketSameLine: false, //多行JSX中的>放置在最后一行的结尾，而不是另起一行
+    arrowParens: 'always', //只有一个参数的箭头函数的参数是否带圆括号，默认avoid
+    rangeStart: 0, //每个文件格式化的范围的开始位置
+    rangeEnd: Infinity, //每个文件格式化的范围的结束位置
+    requirePragma: false, //是否严格按照文件顶部的特殊注释格式化代码
+    insertPragma: false, //是否在格式化的文件顶部插入Pragma标记
+    proseWrap: 'preserve', //是否要换行，可选值"always"｜"never"｜"preserve"
+    htmlWhitespaceSensitivity: 'css', //HTML空白敏感度，可选值"css"｜"strict"｜"ignore"
+    vueIndentScriptAndStyle: false, //是否对vue中的script及style标签内的代码进行缩进
+    endOfLine: 'lf', //换行符使用lf｜crlf｜cr｜auto
+    embeddedLanguageFormatting: 'auto' //是否格式化嵌入的代码块
 };

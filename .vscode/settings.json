@@ -1,20 +1,22 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "editor.quickSuggestions": {
-    "other": true,
-    "comments": false,
-    "strings": false
-  },
-  "editor.hover.enabled": true,
-  "editor.hover.delay": 300
+    // 保存时自动修复 ESLint 错误
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    // 保存时自动格式化代码
+    "editor.formatOnSave": true,
+    // 设置默认格式化工具为 Prettier
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // ESLint 校验的文件类型
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    // 代码提示相关配置
+    "editor.quickSuggestions": {
+        "other": true, // 在代码中启用快速提示
+        "comments": false, // 在注释中禁用快速提示
+        "strings": false // 在字符串中禁用快速提示
+    },
+    // 启用鼠标悬停提示
+    "editor.hover.enabled": true,
+    // 设置鼠标悬停提示的延迟时间（毫秒）
+    "editor.hover.delay": 300
 }

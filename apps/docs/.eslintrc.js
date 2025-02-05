@@ -29,8 +29,13 @@ module.exports = {
             node: {
                 extensions: ['.js', '.jsx', '.ts', '.tsx', '.mdx', '.mjs', '.md'],
                 moduleDirectory: ['node_modules', '../../packages']
+                // paths: ['../../packages/ui/src']
             }
         },
+        // 添加以下配置
+        // 'import/parsers': {
+        //     '@typescript-eslint/parser': ['.ts', '.tsx', '.mdx']
+        // },
         react: {
             version: 'detect' // 自动检测 React 版本
         }
@@ -53,6 +58,7 @@ module.exports = {
             files: ['*.mdx'], // 针对 MDX 文件
             extends: ['plugin:mdx/recommended'], // 使用推荐的 MDX 配置
             rules: {
+                'import/namespace': 'off', // 添加此规则
                 'react/jsx-no-undef': 'off', // 关闭 JSX 未定义变量检查
                 'prettier/prettier': 'warn'
             }

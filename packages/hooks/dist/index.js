@@ -2,10 +2,10 @@
 
 var react = require('react');
 
-var m=t=>{react.useEffect(()=>{t==null||t();},[]);};var x=t=>{react.useEffect(()=>()=>{t==null||t();},[]);};var d=()=>{let[,t]=react.useState({});return react.useCallback(()=>{t({});},[])};
+var f=t=>{react.useEffect(()=>{t?.();},[]);};var n=t=>{react.useEffect(()=>()=>{t?.();},[]);};var a=()=>{let[,t]=react.useState({});return react.useCallback(()=>{t({});},[])};
 
-exports.useMount = m;
-exports.useUnmount = x;
-exports.useUpdate = d;
+exports.useMount = f;
+exports.useUnmount = n;
+exports.useUpdate = a;
 //# sourceMappingURL=out.js.map
 //# sourceMappingURL=index.js.map

@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 
-var m=t=>{useEffect(()=>{t==null||t();},[]);};var x=t=>{useEffect(()=>()=>{t==null||t();},[]);};var d=()=>{let[,t]=useState({});return useCallback(()=>{t({});},[])};
+var f=t=>{useEffect(()=>{t?.();},[]);};var n=t=>{useEffect(()=>()=>{t?.();},[]);};var a=()=>{let[,t]=useState({});return useCallback(()=>{t({});},[])};
 
-export { m as useMount, x as useUnmount, d as useUpdate };
+export { f as useMount, n as useUnmount, a as useUpdate };
 //# sourceMappingURL=out.js.map
 //# sourceMappingURL=index.mjs.map

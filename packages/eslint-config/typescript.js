@@ -51,6 +51,6 @@ module.exports = {
                 }
             }
         ],
-        'prettier/prettier': 'off'
+        'prettier/prettier': 'off' // 关闭 prettier 所有规则
     }
 };

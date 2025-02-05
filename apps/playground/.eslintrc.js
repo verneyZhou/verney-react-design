@@ -4,7 +4,7 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
-        'import/no-unresolved': 'off'
+        'import/no-unresolved': 'off',
     },
     ignorePatterns: ['dist', '.eslintrc.js'],
 };
