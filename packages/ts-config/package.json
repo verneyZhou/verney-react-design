@@ -3,8 +3,8 @@
     "version": "0.0.1",
     "license": "MIT",
     "exports": {
-        "./base": "./base.js",
-        "./react": "./react.js"
+        "./base": "./base.json",
+        "./react": "./react.json"
     },
     "files": [
         "base.json",

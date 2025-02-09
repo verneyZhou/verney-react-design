@@ -4,6 +4,8 @@ title: Button 按钮
 
 import { Button } from '@verney/ui';
 
+import ShadowDOMWrapper from '@/components/ShadowDOMWrapper';
+
 # Button 按钮
 
 按钮用于开始一个即时操作。
@@ -24,6 +26,7 @@ import { Button } from '@verney/ui';
 <Button type="link">链接按钮</Button>
 <Button type="text">文本按钮</Button>
 `}>
+<ShadowDOMWrapper>
   <div className="flex gap-2 flex-wrap">
     <Button>默认按钮</Button>
     <Button type="primary">主要按钮</Button>
@@ -31,6 +34,7 @@ import { Button } from '@verney/ui';
     <Button type="link">链接按钮</Button>
     <Button type="text">文本按钮</Button>
   </div>
+</ShadowDOMWrapper>
 </CodeBlock>
 
 ## API

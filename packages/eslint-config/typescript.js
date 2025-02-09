@@ -52,5 +52,6 @@ module.exports = {
             }
         ],
         'prettier/prettier': 'off' // 关闭 prettier 所有规则
-    }
+    },
+    ignorePatterns: ['dist', 'node_modules']
 };

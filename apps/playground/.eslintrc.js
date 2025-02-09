@@ -6,5 +6,5 @@ module.exports = {
     rules: {
         'import/no-unresolved': 'off',
     },
-    ignorePatterns: ['dist', '.eslintrc.js'],
+    ignorePatterns: ['dist', '.eslintrc.js', 'vite.config.ts'],
 };

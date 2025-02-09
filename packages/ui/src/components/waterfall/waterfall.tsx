@@ -361,7 +361,7 @@ export const Waterfall: React.FC<WaterfallProps> = ({
 Waterfall.displayName = 'Waterfall';
 
 // 渲染单个item
-const WaterfallItem = ({
+const WaterfallItem = React.memo(({
     item,
     index,
     columnIndex,
@@ -477,4 +477,4 @@ const WaterfallItem = ({
             {renderItem?.(item, index)}
         </div>
     );
-};
+});

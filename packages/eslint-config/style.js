@@ -16,5 +16,10 @@ module.exports = {
             files: ['*.scss', '**/*.scss'],
             customSyntax: 'postcss-scss',
         },
+        {
+            files: ['*.less', '**/*.less'],
+            customSyntax: 'postcss-less',
+        },
     ],
+    ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.tsx', '**/*.ts'],
 };

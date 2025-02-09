@@ -1,5 +1,7 @@
 import { Waterfall } from '@verney/ui';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, memo } from 'react';
+
+import ShadowDOMWrapper from '../ShadowDOMWrapper';
 
 const mockData = (page: number) => {
   return Array.from({ length: 10 }, (_, i) => ({
@@ -30,9 +32,20 @@ const LoadMoreExample: React.FC = () => {
     setLoading(false);
   }, [page, loading]);
 
+  // 定义组件所需的样式
+  const styles = `
+    .waterfall-container {
+      height: 600px;
+      overflow: auto;
+      padding: 16px;
+      background: #f5f5f5;
+    }
+  `;
+
   return (
-    <div style={{ height: '600px', overflow: 'auto', padding: '16px', background: '#f5f5f5' }}>
-      <Waterfall
+    <ShadowDOMWrapper styles={styles}>
+      <div className="waterfall-container">
+        <Waterfall
         dataSource={data}
         columns={2}
         gutter={16}
@@ -49,40 +62,48 @@ const LoadMoreExample: React.FC = () => {
             没有更多数据了
           </div>
         }
-        renderItem={(item) => (
-          <div 
-            style={{ 
-              background: '#fff',
-              borderRadius: '8px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-              overflow: 'hidden'
-            }}
-          >
-            <img 
-              src={item.image} 
-              alt={item.title}
-              style={{ 
-                width: '100%',
-                height: 'auto',
-                display: 'block'
-              }} 
-            />
-            <div style={{ padding: '12px' }}>
-              <h3 style={{ margin: '0 0 8px' }}>{item.title}</h3>
-              <p style={{ 
-                margin: 0,
-                fontSize: '14px',
-                color: '#666',
-                lineHeight: 1.5
-              }}>
-                {item.desc}
-              </p>
-            </div>
-          </div>
-        )}
-      />
-    </div>
+        renderItem={(item) => <WaterfallItem item={item} />}
+        />
+      </div>
+    </ShadowDOMWrapper>
   );
 };
+
+const WaterfallItem = memo(({ item }: { item: any }) => {
+  return (
+    <div 
+      style={{ 
+        background: '#fff',
+        borderRadius: '8px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+        overflow: 'hidden'
+      }}
+    >
+      <img 
+        src={item.image} 
+        alt={item.title}
+        // loading="lazy"
+        style={{ 
+          width: '100%',
+          height: 'auto',
+          display: 'block'
+        }} 
+      />
+      <div style={{ padding: '12px' }}>
+        <h3 style={{ margin: '0 0 8px' }}>{item.title}</h3>
+        <p style={{ 
+          margin: 0,
+          fontSize: '14px',
+          color: '#666',
+          lineHeight: 1.5
+        }}>
+          {item.desc}
+        </p>
+      </div>
+    </div>
+  );
+});
+
+WaterfallItem.displayName = 'WaterfallItem';
 
 export default LoadMoreExample;

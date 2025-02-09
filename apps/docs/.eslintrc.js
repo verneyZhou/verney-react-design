@@ -20,6 +20,10 @@ module.exports = {
     // 特定设置
     settings: {
         'mdx/code-blocks': true, // 启用 MDX 代码块支持
+        // 启动 MDX const变量支持
+        'mdx/embedded-constructs': {
+            const: true
+        },
         // 配置 import 解析
         'import/resolver': {
             typescript: {

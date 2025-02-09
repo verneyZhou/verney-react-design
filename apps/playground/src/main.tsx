@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@verney/ui/dist/style.css';
+import '@verney/ui/style.css';
 import '@/styles/index.css';
 
 import App from './App';

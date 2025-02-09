@@ -1,0 +1,33 @@
+.verney-waterfall {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.verney-waterfall-column {
+    width: 100%;
+}
+
+.verney-waterfall-item {
+    width: 100%;
+    break-inside: avoid;
+}
+
+.verney-waterfall-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.verney-waterfall-loader {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 20px 0;
+    color: #999;
+}
+
+@media screen and (width <= 768px) {
+    .verney-waterfall {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}

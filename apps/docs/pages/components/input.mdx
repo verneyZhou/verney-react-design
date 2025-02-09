@@ -2,7 +2,21 @@
 title: Input 输入框
 ---
 
-import { Input } from "@verney/ui";
+import { Input } from '@verney/ui';
+
+import ShadowDOMWrapper from '@/components/ShadowDOMWrapper';
+
+export const styles = `
+    .gap-4 {
+        gap: 1rem;
+    }
+    .flex-col {
+        flex-direction: column;
+    }
+    .flex {
+        display: flex;
+    }
+`;
 
 # Input 输入框
 
@@ -23,9 +37,11 @@ import { Input } from "@verney/ui";
 
 <Input placeholder="基本使用" />
 `}>
-  <div className="flex flex-col gap-4">
-    <Input placeholder="基本使用" />
-  </div>
+  <ShadowDOMWrapper styles={styles}>
+    <div className="flex flex-col gap-4">
+      <Input placeholder="基本使用" />
+    </div>
+  </ShadowDOMWrapper>
 </CodeBlock>
 
 ### 三种大小
@@ -38,11 +54,13 @@ import { Input } from "@verney/ui";
 <Input placeholder="默认尺寸" />
 <Input size="small" placeholder="小尺寸" />
 `}>
-  <div className="flex flex-col gap-4">
+<ShadowDOMWrapper styles={styles}>
+<div className="flex flex-col gap-4">
     <Input size="large" placeholder="大尺寸" />
     <Input placeholder="默认尺寸" />
     <Input size="small" placeholder="小尺寸" />
-  </div>
+</div>
+</ShadowDOMWrapper>
 </CodeBlock>
 
 ### 前缀和后缀

@@ -1,4 +1,4 @@
-import { Button } from '@verney/ui';
+import { Button, Input } from '@verney/ui';
 import { add } from '@verney/utils';
 
 import { HooksTest } from './components/HooksTest';
@@ -18,6 +18,7 @@ function App() {
                     <Button>默认按钮</Button>
                     <Button type="primary">主要按钮</Button>
                     <Button type="dashed">虚线按钮</Button>
+                    <Input />
                 </div>
             </section>
 

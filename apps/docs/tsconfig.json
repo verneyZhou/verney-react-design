@@ -4,7 +4,10 @@
         "paths": {
             "@/*": ["./*"],
             "@verney/ui": ["../../packages/ui/src"]
-        }
+        },
+        "noEmit": true,
+        "incremental": true,
+        "jsx": "preserve"
     },
     "include": [
         "pages/*",

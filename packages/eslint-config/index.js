@@ -1,4 +1,7 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-    extends: ['./typescript'],
+    extends: [
+        // './base',
+        './typescript'
+    ],
 };
