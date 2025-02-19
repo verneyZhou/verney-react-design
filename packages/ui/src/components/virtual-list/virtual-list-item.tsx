@@ -25,11 +25,11 @@ const VirtualListItem: FC<VirtualListItemProps> = ({
     itemWrapperClass = '',
 }) => {
     const virtualItemRef = useRef<HTMLDivElement>(null);
-    const resizeObserver = useRef<ResizeObserver>(null);
+    const resizeObserver = useRef<ResizeObserver | null>(null);
 
     useEffect(() => {
         if (virtualItemRef.current) {
-            const domNode: ChildNode | null = virtualItemRef.current.firstChild; // 获取当前item
+            const domNode = virtualItemRef.current.firstChild as Element; // 获取当前item并转换为Element类型
             if (!domNode) return;
             // 初始化ResizeObserver，监听domNode尺寸变化
             resizeObserver.current = new ResizeObserver(() => {

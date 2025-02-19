@@ -152,7 +152,7 @@ export const VirtualList: React.FC<VirtualListProps> = (props) => {
     });
 
     // 当item尺寸变化时，更新滚动偏移量
-    const sizeChangeHandle = (index: number, domNode: ChildNode) => {
+    const sizeChangeHandle = (index: number, domNode: any) => {
         const height = domNode?.offsetHeight || 0; // 获取domNode的高度
         setMeasuredData((prevData) => {
             const measuredDataMap = { ...prevData.measuredDataMap };
