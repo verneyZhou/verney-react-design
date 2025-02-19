@@ -2,6 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { VirtualList } from '@verney/ui';
 import React, { useState } from 'react';
 
+function randomString(): string {
+    const chars =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const result = '';
+    const len = Math.floor(Math.random() * chars.length);
+    return chars.slice(0, len);
+}
+
 const meta = {
     title: 'Components/VirtualList',
     component: VirtualList,
@@ -14,159 +22,99 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 生成测试数据
-const generateItems = (count: number) =>
-    Array.from({ length: count }, (_, i) => ({
+function generateItems(count: number) {
+    return Array.from({ length: count }, (_, i) => ({
         id: i,
-        height: Math.floor(Math.random() * 100) + 50,
-        backgroundColor: `hsl(${Math.random() * 360}, 70%, 80%)`,
+        title: `Item ${i}`,
+        description: `This is a description for item ${i}. ${randomString()}`,
     }));
+}
 
-// 单列列表示例
-export const SingleList: Story = {
-    name: '单列列表',
-    render: () => {
-        const [items, setItems] = useState(() => generateItems(1000));
-        const [isLoading, setIsLoading] = useState(false);
-
-        const loadMore = () => {
-            setIsLoading(true);
-            setTimeout(() => {
-                const newItems = generateItems(100);
-                setItems((prevItems) => [...prevItems, ...newItems]);
-                setIsLoading(false);
-            }, 1000);
-        };
-
-        return (
-            <div style={{ width: '800px' }}>
-                <VirtualList
-                    items={items}
-                    height={600}
-                    mode="list"
-                    estimatedItemHeight={70}
-                    onLoadMore={loadMore}
-                    isLoading={isLoading}
-                    renderItem={(item) => (
-                        <div
-                            style={{
-                                height: item.height,
-                                backgroundColor: item.backgroundColor,
-                                padding: '16px',
-                                borderRadius: '8px',
-                                marginBottom: '8px',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                            }}
-                        >
-                            列表项 {item.id} (高度: {item.height}px)
-                        </div>
-                    )}
-                />
+export const Default: Story = {
+    args: {
+        data: generateItems(100),
+        visibleHeight: 400,
+        itemEstimatedHeight: 80,
+        renderItem: (item: any) => (
+            <div
+                style={{
+                    padding: '16px',
+                    backgroundColor: '#fff',
+                    borderRadius: '8px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                    margin: '8px',
+                }}
+            >
+                <h3 style={{ margin: '0 0 8px' }}>{item.title}</h3>
+                <p style={{ margin: 0, color: '#666', wordBreak: 'break-all' }}>
+                    {item.description}
+                </p>
             </div>
-        );
+        ),
     },
 };
 
-// 瀑布流布局示例
-export const WaterfallLayout: Story = {
-    name: '瀑布流布局',
-    render: () => {
-        const [items, setItems] = useState(() => generateItems(1000));
-        const [isLoading, setIsLoading] = useState(false);
-
-        const loadMore = () => {
-            setIsLoading(true);
-            setTimeout(() => {
-                const newItems = generateItems(100);
-                setItems((prevItems) => [...prevItems, ...newItems]);
-                setIsLoading(false);
-            }, 1000);
-        };
-
-        return (
-            <div style={{ width: '1200px' }}>
-                <VirtualList
-                    items={items}
-                    height={600}
-                    columnCount={3}
-                    mode="waterfall"
-                    estimatedItemHeight={100}
-                    onLoadMore={loadMore}
-                    isLoading={isLoading}
-                    renderItem={(item) => (
-                        <div
-                            style={{
-                                height: item.height,
-                                backgroundColor: item.backgroundColor,
-                                padding: '16px',
-                                borderRadius: '8px',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                            }}
-                        >
-                            瀑布流项 {item.id} (高度: {item.height}px)
-                        </div>
-                    )}
-                />
-            </div>
-        );
+export const PageMode: Story = {
+    args: {
+        ...Default.args,
+        pageMode: true,
+        pageModeVisibleSize: 20,
     },
 };
 
-// 加载更多示例
-export const LoadMore: Story = {
-    name: '加载更多',
+export const WithLoadMore: Story = {
     render: () => {
-        const [items, setItems] = useState(() => generateItems(20));
-        const [isLoading, setIsLoading] = useState(false);
+        const [data, setData] = useState(generateItems(30));
+        const [loading, setLoading] = useState(false);
+        const [hasMore, setHasMore] = useState(true);
 
-        const loadMore = () => {
-            setIsLoading(true);
-            setTimeout(() => {
-                const newItems = generateItems(10);
-                setItems((prevItems) => [...prevItems, ...newItems]);
-                setIsLoading(false);
-            }, 1000);
+        const handleLoadMore = async () => {
+            setLoading(true);
+            // 模拟异步加载
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            const currentLength = data.length;
+            const newItems = generateItems(10).map((item) => ({
+                ...item,
+                id: item.id + currentLength,
+            }));
+            setData([...data, ...newItems]);
+            setLoading(false);
+            if (currentLength >= 100) {
+                setHasMore(false);
+            }
         };
 
         return (
-            <div style={{ width: '600px' }}>
-                <VirtualList
-                    items={items}
-                    height={400}
-                    mode="list"
-                    estimatedItemHeight={70}
-                    onLoadMore={loadMore}
-                    isLoading={isLoading}
-                    loadMoreThreshold={50}
-                    renderItem={(item) => (
-                        <div
-                            style={{
-                                height: item.height,
-                                backgroundColor: item.backgroundColor,
-                                padding: '16px',
-                                borderRadius: '8px',
-                                marginBottom: '8px',
-                                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                            }}
-                        >
-                            列表项 {item.id} (高度: {item.height}px)
-                            {items.length - 1 === item.id && (
-                                <div
-                                    style={{
-                                        marginTop: '8px',
-                                        fontSize: '14px',
-                                        color: '#666',
-                                    }}
-                                >
-                                    {isLoading
-                                        ? '加载中...'
-                                        : '滚动到底部加载更多'}
-                                </div>
-                            )}
-                        </div>
-                    )}
-                />
-            </div>
+            <VirtualList
+                data={data}
+                visibleHeight={400}
+                itemEstimatedHeight={80}
+                hasMore={hasMore}
+                onLoadMore={handleLoadMore}
+                renderLoadMore={(loading, hasMore) => (
+                    <div style={{ padding: '16px', textAlign: 'center', color: '#666' }}>
+                        {loading ? '加载中...' : hasMore ? '加载更多' : '没有更多数据了'}
+                    </div>
+                )}
+                renderItem={(item: any, index: number) => (
+                    <div
+                        style={{
+                            padding: '16px',
+                            backgroundColor: '#fff',
+                            borderRadius: '8px',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                            margin: '8px',
+                        }}
+                    >
+                        <h3 style={{ margin: '0 0 8px' }}>
+                            {item.title} index: {index}
+                        </h3>
+                        <p style={{ margin: 0, color: '#666', wordBreak: 'break-all' }}>
+                            {item.description}
+                        </p>
+                    </div>
+                )}
+            />
         );
     },
 };

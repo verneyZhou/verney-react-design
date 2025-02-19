@@ -22,18 +22,14 @@ export const HooksTest: React.FC = () => {
 
             <div className="space-y-4">
                 <div className="border p-4 rounded">
-                    <h3 className="text-lg font-semibold mb-2">
-                        useMount & useUnmount 测试
-                    </h3>
+                    <h3 className="text-lg font-semibold mb-2">useMount & useUnmount 测试</h3>
                     <button
                         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                         onClick={() => setShowChild((prev) => !prev)}
                     >
                         {showChild ? '卸载子组件' : '挂载子组件'}
                     </button>
-                    <div className="mt-4">
-                        {showChild && <ChildComponent />}
-                    </div>
+                    <div className="mt-4">{showChild && <ChildComponent />}</div>
                 </div>
             </div>
         </div>

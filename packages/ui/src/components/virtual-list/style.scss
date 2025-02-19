@@ -1,19 +1,23 @@
 .verney-virtual-list {
     width: 100%;
     position: relative;
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
 }
 
 .verney-virtual-list-container {
     position: relative;
     overflow: hidden auto;
     width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
-.verney-virtual-list-content {
-    width: 100%;
+.verney-virtual-content {
     position: relative;
 }
-
 .verney-virtual-list-items {
     position: relative;
     width: 100%;
@@ -33,8 +37,37 @@
         display: inline-block;
     }
 }
+////////
 
+.verney-virtual-list__wrapper {
+    width: 100%;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+}
+.verney-virtual-content {
+    width: 100%;
+    position: relative;
+}
+.verney-virtual-translate {
+    position: relative;
+    height: auto;
+    will-change: transform; // 利用合成线程去处理，提高性能,
+    // 不支持will-change 属性的浏览器，使用一个3D transform属性来强制提升为合成`transform: translateZ(0)`;
+}
 .verney-virtual-list-loading {
     text-align: center;
     padding: 10px;
+}
+
+.verney-virtual-loadmore__text {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #999;
+    font-size: 12px;
 }

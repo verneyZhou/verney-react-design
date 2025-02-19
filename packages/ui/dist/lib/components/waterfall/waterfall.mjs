@@ -236,7 +236,7 @@ const Waterfall = ({
   );
 };
 Waterfall.displayName = "Waterfall";
-const WaterfallItem = ({
+const WaterfallItem = require$$0.memo(({
   item,
   index,
   columnIndex,
@@ -320,6 +320,6 @@ const WaterfallItem = ({
       children: renderItem == null ? void 0 : renderItem(item, index)
     }
   );
-};
+});
 exports.Waterfall = Waterfall;
 //# sourceMappingURL=waterfall.mjs.map

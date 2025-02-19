@@ -11,11 +11,12 @@
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
     },
     "dependencies": {
+        "@verney/hooks": "workspace:*",
         "@verney/ui": "workspace:*",
         "@verney/utils": "workspace:*",
-        "@verney/hooks": "workspace:*",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^7.1.5"
     },
     "devDependencies": {
         "@types/react": "^18.2.0",

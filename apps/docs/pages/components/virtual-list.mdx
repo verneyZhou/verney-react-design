@@ -1,0 +1,175 @@
+---
+title: VirtualList 虚拟滚动列表
+---
+
+import { VirtualList } from '@verney/ui';
+
+import VirtualListExample from '@/components/demo/VirtualListExample';
+import ShadowDOMWrapper from '@/components/ShadowDOMWrapper';
+
+# VirtualList 虚拟滚动列表
+
+虚拟滚动列表组件，用于高效展示大量数据，通过动态渲染可视区域内的元素来提升性能。
+
+## 何时使用
+
+-   需要展示大量数据时，避免一次性渲染所有数据导致性能问题。
+-   列表项高度不固定，需要动态计算和优化渲染的场景。
+-   需要支持无限滚动加载更多数据的场景。
+
+## 代码演示
+
+### 基础用法
+
+<CodeBlock
+  language="tsx"
+  code={`import { VirtualList } from '@verney/ui';
+
+const data = Array.from({ length: 100 }, (\_, i) => ({
+id: i,
+title: \`标题\${i + 1}\`,
+content: '这是一段示例描述文本，用于演示虚拟滚动列表的效果。'
+}));
+
+<VirtualList
+  data={data}
+  visibleHeight={400}
+  itemEstimatedHeight={100}
+  renderItem={(item) => (
+    <div className="list-item">
+      <h3>{item.title}</h3>
+      <p>{item.content}</p>
+    </div>
+  )}
+/>
+`}>
+  <ShadowDOMWrapper className="demo-virtual-list">
+    <VirtualList
+      data={Array.from({ length: 100 }, (_, i) => ({
+        id: i,
+        title: `标题${i + 1}`,
+        content: '这是一段示例描述文本，用于演示虚拟滚动列表的效果。'
+      }))}
+      visibleHeight={400}
+      itemEstimatedHeight={100}
+      renderItem={(item) => (
+        <div className="list-item">
+          <h3>{item.title}</h3>
+          <p>{item.content}</p>
+        </div>
+      )}
+    />
+  </ShadowDOMWrapper>
+</CodeBlock>
+
+### 动态加载更多
+
+<CodeBlock
+  language="tsx"
+  code={`import React, { useState, useCallback } from 'react';
+import { VirtualList } from '@verney/ui';
+
+const mockData = (page: number) => {
+return Array.from({ length: 10 }, (\_, i) => ({
+id: page _ 10 + i,
+title: \`标题\${page _ 10 + i + 1}\`,
+content: '这是一段示例描述文本，用于演示虚拟滚动列表的效果。'
+}));
+};
+
+const App = () => {
+const [data, setData] = useState(() => mockData(0));
+const [loading, setLoading] = useState(false);
+const [hasMore, setHasMore] = useState(true);
+const [page, setPage] = useState(1);
+
+const loadMore = useCallback(async () => {
+if (loading) return;
+setLoading(true);
+
+    // 模拟异步加载
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    const newData = mockData(page);
+    setData(prev => [...prev, ...newData]);
+    setPage(prev => prev + 1);
+    setHasMore(page < 5); // 最多加载5页
+    setLoading(false);
+
+}, [page, loading]);
+
+return (
+
+<VirtualList
+    data={data}
+    visibleHeight={400}
+    itemEstimatedHeight={100}
+    hasMore={hasMore}
+    onLoadMore={loadMore}
+    renderLoadMore={(loading, hasMore) => (
+        <div style={{ textAlign: 'center', padding: '16px 0' }}>
+            {loading ? '加载中...' : hasMore ? '加载更多' : '没有更多数据了'}
+        </div>
+    )}
+    renderItem={(item) => (
+        <div className="list-item">
+            <h3>{item.title}</h3>
+            <p>{item.content}</p>
+        </div>
+    )}
+/>
+); }; `}>
+
+  <VirtualListExample />
+</CodeBlock>
+
+## API
+
+### VirtualList
+
+| 参数                | 说明                         | 类型                                                         | 默认值  |
+| ------------------- | ---------------------------- | ------------------------------------------------------------ | ------- |
+| data                | 列表数据                     | `any[]`                                                      | `[]`    |
+| uniqueKey           | 数据项的唯一标识字段         | `string`                                                     | -       |
+| pageMode            | 是否开启整页滚动模式         | `boolean`                                                    | `false` |
+| visibleHeight       | 可视区域高度                 | `number`                                                     | -       |
+| pageModeVisibleSize | 整页滚动模式下显示的数据条数 | `number`                                                     | -       |
+| itemEstimatedHeight | 列表项预估高度               | `number`                                                     | `50`    |
+| renderItem          | 渲染列表项的函数             | `(item: any, index: number, list: any[]) => React.ReactNode` | -       |
+| wrapperClass        | 容器类名                     | `string`                                                     | -       |
+| wrapperStyle        | 容器样式                     | `React.CSSProperties`                                        | -       |
+| bufferSize          | 缓冲区域大小                 | `number`                                                     | -       |
+| onLoadMore          | 加载更多数据的回调函数       | `() => Promise<unknown>`                                     | -       |
+| hasMore             | 是否还有更多数据             | `boolean`                                                    | `false` |
+| renderLoadMore      | 自定义渲染加载更多区域       | `(loading: boolean, hasMore: boolean) => React.ReactNode`    | -       |
+| isShowLoadMore      | 是否显示加载更多区域         | `boolean`                                                    | `true`  |
+| itemWrapperClass    | 列表项容器类名               | `string`                                                     | -       |
+| topThreshold        | 顶部阈值                     | `number`                                                     | `0`     |
+| onScrollTop         | 滚动到顶部的回调函数         | `() => void`                                                 | -       |
+| onScroll            | 滚动事件回调函数             | `(evt: Event) => void`                                       | -       |
+| presetOffset        | 预设的滚动偏移量             | `number`                                                     | -       |
+
+## 注意事项
+
+1. **性能优化**
+
+    - 组件内部实现了高效的虚拟滚动机制，只渲染可视区域内的元素
+    - 建议为每个列表项提供唯一的 `uniqueKey`，以提高渲染性能
+    - 如果列表项高度不固定，可以通过 `itemEstimatedHeight` 提供一个预估值
+
+2. **滚动加载**
+
+    - 通过 `onLoadMore` 和 `hasMore` 配合实现无限滚动加载
+    - 可以使用 `renderLoadMore` 自定义加载状态的展示
+    - 加载过程中会自动防止重复触发加载
+
+3. **页面模式**
+
+    - 开启 `pageMode` 后，列表会以整页为单位进行渲染和加载
+    - 可以通过 `pageModeVisibleSize` 控制每页显示的数据条数
+    - 页面模式下滚动事件会绑定到 document 上
+
+4. **滚动控制**
+    - 支持通过 `presetOffset` 设置初始滚动位置
+    - 可以通过 `onScrollTop` 监听列表滚动到顶部的事件
+    - `topThreshold` 用于控制触发滚动到顶部事件的阈值

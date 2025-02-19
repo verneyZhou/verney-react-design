@@ -2,39 +2,63 @@
     width: 100%;
     position: relative;
 }
-
+.verney-virtual-list * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 .verney-virtual-list-container {
     position: relative;
     overflow: hidden auto;
     width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
-
-.verney-virtual-list-content {
-    width: 100%;
+.verney-virtual-content {
     position: relative;
 }
-
 .verney-virtual-list-items {
     position: relative;
     width: 100%;
     will-change: transform;
 }
-
 .verney-virtual-list-items .verney-virtual-list-items-waterfall {
     display: flex;
     flex-wrap: wrap;
 }
-
 .verney-virtual-list-item {
     width: 100%;
     box-sizing: border-box;
 }
-
 .verney-virtual-list-item .verney-virtual-list-item-waterfall {
     display: inline-block;
 }
-
+.verney-virtual-list__wrapper {
+    width: 100%;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+.verney-virtual-list__wrapper * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.verney-virtual-content {
+    width: 100%;
+    position: relative;
+}
+.verney-virtual-translate {
+    position: relative;
+    height: auto;
+    will-change: transform;
+}
 .verney-virtual-list-loading {
     text-align: center;
     padding: 10px;
+}
+.verney-virtual-loadmore__text {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #999;
+    font-size: 12px;
 }

@@ -1,26 +1,41 @@
 import { default as React } from 'react';
 export interface VirtualListProps {
-    /** 列表数据 */
-    items: any[];
-    /** 容器高度 */
-    height: number;
-    /** 列数 */
-    columnCount?: number;
-    /** 预估的每项高度 */
-    estimatedItemHeight?: number;
-    /** 缓冲区大小 */
-    overscan?: number;
-    /** 加载更多的触发阈值 */
-    loadMoreThreshold?: number;
-    /** 加载更多回调 */
-    onLoadMore?: () => void;
-    /** 渲染每一项的函数 */
-    renderItem: (item: any, index: number) => React.ReactNode;
-    /** 是否正在加载更多 */
-    isLoading?: boolean;
-    /** 类名 */
-    className?: string;
-    /** 布局模式 - 瀑布流或者列表 */
-    mode?: 'waterfall' | 'list';
+    data: any[];
+    uniqueKey?: string;
+    pageMode?: boolean;
+    visibleHeight?: number;
+    pageModeVisibleSize?: number;
+    itemEstimatedHeight?: number;
+    renderItem: (item: object, index: number, list: any[]) => React.ReactNode;
+    wrapperClass?: string;
+    wrapperStyle?: React.CSSProperties;
+    bufferSize?: number;
+    onLoadMore?: () => Promise<unknown>;
+    hasMore?: boolean;
+    renderLoadMore?: (loading: boolean, hasMore: boolean) => React.ReactNode;
+    isShowLoadMore?: boolean;
+    itemWrapperClass?: string;
+    topThreshold?: number;
+    onScrollTop?: () => void;
+    onScroll?: (evt: Event) => void;
+    presetOffset?: number;
+}
+export interface measuredDataProps {
+    measuredDataMap: {
+        [key: number]: {
+            offset: number;
+            height: number;
+        };
+    };
+    lastMeasuredItemIndex: number;
 }
 export declare const VirtualList: React.FC<VirtualListProps>;
+/**
+ * 加载图片
+ * 加载更多增加loader组件传参
+ * 缓存优化，滚动优化
+ * pageMode模式
+ * 测试用例，文档用例，发版
+ * 项目中引用
+ * 博客
+ */

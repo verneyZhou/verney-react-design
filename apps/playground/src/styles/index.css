@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.vitual-list-wrapper {
+    border: 1px solid #ccc;
+    width: 600px;
+}
