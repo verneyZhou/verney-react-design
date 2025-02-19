@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 // 模拟 IntersectionObserver
 class MockIntersectionObserver {
