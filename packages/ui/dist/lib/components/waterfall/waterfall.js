@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const jsxRuntime = require("../../skip/_virtual/jsx-runtime.mjs");
+const jsxRuntime = require("../../_virtual/jsx-runtime.js");
 const classNames = require("classnames");
 const require$$0 = require("react");
 const reactIntersectionObserver = require("react-intersection-observer");
-;/* empty css             */
+;/* empty css            */
 const Waterfall = ({
   dataSource = [],
   columns = 2,
@@ -322,4 +322,4 @@ const WaterfallItem = require$$0.memo(({
   );
 });
 exports.Waterfall = Waterfall;
-//# sourceMappingURL=waterfall.mjs.map
+//# sourceMappingURL=waterfall.js.map

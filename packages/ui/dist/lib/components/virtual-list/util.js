@@ -79,4 +79,4 @@ exports.getRangeToRender = getRangeToRender;
 exports.getStartIndex = getStartIndex;
 exports.scrollToOffset = scrollToOffset;
 exports.throttle = throttle;
-//# sourceMappingURL=util.mjs.map
+//# sourceMappingURL=util.js.map

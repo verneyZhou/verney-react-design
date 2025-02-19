@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../skip/_virtual/jsx-runtime.mjs";
+import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime.mjs";
 import classNames from "classnames";
 import require$$0, { useRef, useState, useCallback, useEffect } from "react";
 import { useInView } from "react-intersection-observer";

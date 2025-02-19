@@ -19,6 +19,9 @@ export default defineConfig({
         dts({
             include: ['src'],
             exclude: ['src/**/*.test.tsx', 'src/**/*.stories.tsx', '**/_virtual/**'],
+            // insertTypesEntry: true, // 是否插入类型入口
+            // copyDtsFiles: true,     // 拷贝文件时是否包含类型
+            // rollupTypes: true, // 打包类型声明文件
             outDir: 'dist/types', // 输出目录
         }),
     ],
@@ -51,9 +54,31 @@ export default defineConfig({
                 {
                     format: 'es',
                     dir: resolve(__dirname, './dist/es'), // 输出到 ES 文件夹
-                    entryFileNames: '[name].mjs',
-                    chunkFileNames: '[name]-[hash].mjs',
+                    // entryFileNames: '[name].mjs', // .mjs 文件是 ES module 标准格式
+                    // chunkFileNames: '[name]-[hash].mjs', // ES 模块的 chunk 文件
+                    entryFileNames: (chunkInfo) => {
+                        // 过滤掉 _virtual 和 node_modules
+                        if (
+                            chunkInfo.name.includes('_virtual') ||
+                            chunkInfo.name.includes('node_modules')
+                        ) {
+                            return 'skip/[name].mjs'; // 放入 skip 目录，打包完后再删除
+                        }
+                        return '[name].mjs';
+                    },
+                    chunkFileNames: (chunkInfo) => {
+                        console.log('====chunkInfo', chunkInfo);
+                        if (
+                            chunkInfo.name.includes('_virtual') ||
+                            chunkInfo.name.includes('node_modules')
+                        ) {
+                            return 'skip/[name]-[hash].mjs';
+                        }
+                        return '[name]-[hash].mjs';
+                    },
                     assetFileNames: '[name].[ext]', // 统一输出样式
+                    // assetFileNames: ({ name }) =>
+                    //     name?.endsWith('.css') ? 'styles/[name]' : '[name].[ext]', // 样式文件单独存储到 styles
                     exports: 'named',
                     preserveModules: true, // 保留模块目录结构
                     preserveModulesRoot: 'src', // 自定义模块根目录
@@ -67,8 +92,28 @@ export default defineConfig({
                 {
                     format: 'cjs',
                     dir: resolve(__dirname, './dist/lib'), // 输出到 CJS 文件夹
-                    entryFileNames: '[name].js',
-                    chunkFileNames: '[name]-[hash].js',
+                    // entryFileNames: '[name].js', // .js 文件是 CommonJS 标准格式
+                    // chunkFileNames: '[name]-[hash].js', // CJS 模块的 chunk 文件
+                    entryFileNames: (chunkInfo) => {
+                        // 过滤掉 _virtual 和 node_modules
+                        if (
+                            chunkInfo.name.includes('_virtual') ||
+                            chunkInfo.name.includes('node_modules')
+                        ) {
+                            return 'skip/[name].mjs'; // 放入 skip 目录，打包完后再删除
+                        }
+                        return '[name].mjs';
+                    },
+                    chunkFileNames: (chunkInfo) => {
+                        console.log('====chunkInfo', chunkInfo);
+                        if (
+                            chunkInfo.name.includes('_virtual') ||
+                            chunkInfo.name.includes('node_modules')
+                        ) {
+                            return 'skip/[name]-[hash].mjs';
+                        }
+                        return '[name]-[hash].mjs';
+                    },
                     assetFileNames: '[name].[ext]', // 统一输出样式
                     exports: 'named',
                     preserveModules: true, // 保留模块目录结构

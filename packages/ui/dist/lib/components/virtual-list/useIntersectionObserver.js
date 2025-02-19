@@ -64,4 +64,4 @@ const useIntersectionObserver = (nodes, onVisibilityChange, onEntryUpdate, optio
   return { observe, unobserve };
 };
 exports.default = useIntersectionObserver;
-//# sourceMappingURL=useIntersectionObserver.mjs.map
+//# sourceMappingURL=useIntersectionObserver.js.map

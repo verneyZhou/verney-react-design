@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const jsxRuntime = require("../../skip/_virtual/jsx-runtime.mjs");
+const jsxRuntime = require("../../_virtual/jsx-runtime.js");
 const classNames = require("classnames");
 const require$$0 = require("react");
-;/* empty css             */
+;/* empty css            */
 const Input = require$$0.forwardRef((props, ref) => {
   const {
     className,
@@ -61,4 +61,4 @@ const Input = require$$0.forwardRef((props, ref) => {
 });
 Input.displayName = "Input";
 exports.Input = Input;
-//# sourceMappingURL=input.mjs.map
+//# sourceMappingURL=input.js.map

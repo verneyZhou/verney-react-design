@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const jsxRuntime = require("../../skip/_virtual/jsx-runtime.mjs");
+const jsxRuntime = require("../../_virtual/jsx-runtime.js");
 const classNames = require("classnames");
 const require$$0 = require("react");
-;/* empty css             */
-const virtualListItem = require("./virtual-list-item.mjs");
-const util = require("./util.mjs");
-const useIntersectionObserver = require("./useIntersectionObserver.mjs");
+;/* empty css            */
+const virtualListItem = require("./virtual-list-item.js");
+const util = require("./util.js");
+const useIntersectionObserver = require("./useIntersectionObserver.js");
 const VirtualList = (props) => {
   const {
     wrapperClass = "",
@@ -183,4 +183,4 @@ const VirtualList = (props) => {
   ] }) }) });
 };
 exports.VirtualList = VirtualList;
-//# sourceMappingURL=virtual-list.mjs.map
+//# sourceMappingURL=virtual-list.js.map

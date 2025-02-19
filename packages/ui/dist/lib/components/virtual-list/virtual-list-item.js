@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
-const jsxRuntime = require("../../skip/_virtual/jsx-runtime.mjs");
+const jsxRuntime = require("../../_virtual/jsx-runtime.js");
 const classNames = require("classnames");
 const require$$0 = require("react");
-;/* empty css             */
+;/* empty css            */
 const VirtualListItem = ({
   children,
   itemKey = 0,
@@ -37,4 +37,4 @@ const VirtualListItem = ({
   return /* @__PURE__ */ jsxRuntime.jsxRuntimeExports.jsx("div", { ref: virtualItemRef, className: itemWrapperClassName, "data-key": itemKey, style, children });
 };
 exports.default = VirtualListItem;
-//# sourceMappingURL=virtual-list-item.mjs.map
+//# sourceMappingURL=virtual-list-item.js.map

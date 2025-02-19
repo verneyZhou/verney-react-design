@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
-const jsxRuntime = require("../../skip/_virtual/jsx-runtime.mjs");
+const jsxRuntime = require("../../_virtual/jsx-runtime.js");
 const classNames = require("classnames");
-;/* empty css             */
+;/* empty css            */
 const Button = ({
   type = "default",
   size = "middle",
@@ -43,4 +43,4 @@ const Button = ({
   );
 };
 exports.default = Button;
-//# sourceMappingURL=button.mjs.map
+//# sourceMappingURL=button.js.map

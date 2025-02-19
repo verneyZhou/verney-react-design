@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports } from "../../skip/_virtual/jsx-runtime.mjs";
+import { j as jsxRuntimeExports } from "../../_virtual/jsx-runtime.mjs";
 import classNames from "classnames";
 /* empty css            */
 const Button = ({
