@@ -1,10 +1,16 @@
 // 移除了`@import url()` 语法, 不然docs项目会报
 // Module not found: Can't resolve '../components/button/style.scss'
 
-// @import './reset.scss';
 /* @verney-ui */
-@import url('./reset.scss');
-@import url('../components/button/style.scss');
-@import url('../components/input/style.scss');
-@import url('../components/virtual-list/style.scss');
-@import url('../components/waterfall/style.scss');
+
+@import './reset.scss';
+@import '../components/button/style.scss';
+@import '../components/input/style.scss';
+@import '../components/virtual-list/style.scss';
+@import '../components/waterfall/style.scss';
+
+// @import url('./reset.scss');
+// @import url('../components/button/style.scss');
+// @import url('../components/input/style.scss');
+// @import url('../components/virtual-list/style.scss');
+// @import url('../components/waterfall/style.scss');

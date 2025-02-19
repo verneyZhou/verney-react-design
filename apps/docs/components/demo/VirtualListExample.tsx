@@ -73,7 +73,7 @@ const VirtualListExample: React.FC = () => {
                             {loading ? '加载中...' : hasMore ? '加载更多' : '没有更多数据了'}
                         </div>
                     )}
-                    renderItem={(item) => (
+                    renderItem={(item: any) => (
                         <div className="virtual-list-item">
                             <h3>{item.title}</h3>
                             <p>{item.content}</p>
